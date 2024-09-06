@@ -12,7 +12,7 @@ export default function Lab1() {
       <div id="wd-p-tag">
         <div id="wd-p-tag">
           <h4>Paragraph Tag</h4>
-          <p id="wd-p-1"> ... </p>
+          <p id="wd-p-1"> This is a paragraph. We often separate a long set of sentences with vertical spaces to make the text easier to read. Browsers ignore vertical white spaces and render all the text as one single set of sentences. To force the browser to add vertical spacing, wrap the paragraphs you want to separate with the paragraph tag </p>
           This is the first paragraph. The paragraph tag is used to format vertical gaps between long pieces of text like this one. This is the second paragraph. Even though there is a deliberate white gap between the paragraph above and this paragraph, by default browsers render them as one contiguous piece of text as shown here on the right. This is the third paragraph. Wrap each paragraph with the paragraph tag to tell browsers to render the gaps.
         </div>
       </div>
@@ -20,7 +20,28 @@ export default function Lab1() {
       <p id="wd-p-3">This is the second paragraph. Even though there is a deliberate white gap between the paragraph above and this paragraph, by default browsers render them as one contiguous piece of text as shown here on the right.</p>
       <p id="wd-p-4">This is the third paragraph. Wrap each paragraph with the paragraph tag to tell browsers to render the gaps.</p>
 
-      <div id="wd-lists"> ... </div>
+      <div id="wd-lists">
+        <h4>List Tags</h4>
+        <h5>Ordered List Tag</h5>
+        How to make pancakes:
+        <ol id="wd-pancakes">
+          <li>Mix dry ingredients.</li>
+          <li>Add wet ingredients.</li>
+          <li>Stir to combine.</li>
+          <li>Heat a skillet or griddle.</li>
+          <li>Pour batter onto the skillet.</li>
+          <li>Cook until bubbly on top.</li>
+          <li>Flip and cook the other side.</li>
+          <li>Serve and enjoy!</li>
+        </ol>
+        My favorite recipe:
+        <ol id="wd-your-favorite-recipe">
+          <li>Cookies</li>
+          <li>Brownies</li>
+          <li>Banana Bread</li>
+          <li>Cake</li>
+        </ol>
+      </div>
       <div id="wd-tables">
         <h4>Table Tag</h4>
         <table border={1} width="100%">
