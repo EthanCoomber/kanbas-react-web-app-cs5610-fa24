@@ -41,6 +41,17 @@ export default function Lab1() {
           <li>Banana Bread</li>
           <li>Cake</li>
         </ol>
+        <h5>Unordered List Tag</h5>
+        My favorite books (in no particular order)
+        <ul id="wd-my-books">
+          <li>Dune</li>
+          <li>Lord of the Rings</li>
+          <li>Ender's Game</li>
+          <li>Red Mars</li>
+          <li>The Forever War</li>
+        </ul>
+        Your favorite books (in no particular order)
+        <ul id="wd-your-books">{/* complete on your own */}</ul>
       </div>
       <div id="wd-tables">
         <h4>Table Tag</h4>
@@ -80,6 +91,16 @@ export default function Lab1() {
             </tr>
           </tfoot>
         </table>
+      </div>
+      <div id="wd-images">
+        <h4>Image tag</h4>
+        Loading an image from the internet:
+        <br />
+        <img id="wd-starship" width="400px" src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg" />
+        <br />
+        Loading a local image:
+        <br />
+        <img id="wd-teslabot" src="public/images/teslabot.jpg" height="200px" />
       </div>
     </div>
   );
