@@ -50,7 +50,12 @@ export default function Lab1() {
           <li>The Forever War</li>
         </ul>
         Your favorite books (in no particular order)
-        <ul id="wd-your-books">{/* complete on your own */}</ul>
+        <ul id="wd-your-books">
+          <li>Harry Potter</li>
+          <li>The Great Gatsby</li>
+          <li>Hunger Games</li>
+          <li>The Godfather</li>
+        </ul>
       </div>
       <div id="wd-tables">
         <h4>Table Tag</h4>
