@@ -6,6 +6,7 @@ export default function KanbasNavigation() {
         Northeastern
       </a>
       <br />
+
       <Link to="/Kanbas/Account" id="wd-account-link">
         Account
       </Link>
