@@ -18,6 +18,12 @@ export default function TOC() {
       <li>
         <Link to="/Kanbas">Kanbas</Link>
       </li>
+      <br />
+      <li>
+        <Link to="https://github.com/EthanCoomber" id="wd-github">
+          Ethan's GitHub
+        </Link>
+      </li>
     </ul>
   );
 }
