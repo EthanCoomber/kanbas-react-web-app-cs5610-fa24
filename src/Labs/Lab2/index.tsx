@@ -205,6 +205,13 @@ export default function Lab2() {
         <br />
         <br />
       </div>
+      <div
+        className="wd-pos-fixed 
+    wd-dimension-square wd-bg-color-blue 
+    wd-fg-color-white"
+      >
+        Fixed position
+      </div>
     </div>
   );
 }
