@@ -31,18 +31,7 @@ export default function KanbasNavigation() {
         Dashboard
       </Link>
       <Link
-        to="/Kanbas/Dashboard"
-        id="wd-course-link"
-        className="list-group-item text-white
-                   bg-black text-center border-0"
-      >
-        <LiaBookSolid className="fs-1 text-danger" />
-        <br />
-        Courses
-      </Link>
-      {/* complete styling the rest of the links */}
-      <Link
-        to="/Kanbas/Dashboard"
+        to="/Kanbas/Courses"
         id="wd-course-link"
         className="list-group-item text-white
                    bg-black text-center border-0"
