@@ -25,7 +25,9 @@ export default function Assignments() {
           <ul className="wd-assignment list-group rounded-0">
             <li className="wd-assignment list-group-item p-2 ps-1">
               <BsGripVertical size={40} className="me-2 fs-3 mr-2 d-inline-block mb-4" />
-              <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
+              <a className="wd-assignment-link" href="#/Kanbas/Courses/1234/Assignments/123">
+                <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
+              </a>
               <div className="d-inline-block">
                 <strong>A1</strong>
                 <br />
@@ -35,7 +37,9 @@ export default function Assignments() {
             </li>
             <li className="wd-assignment list-group-item p-2 ps-1">
               <BsGripVertical size={40} className="me-2 fs-3 d-inline-block mb-4" />
-              <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
+              <a className="wd-assignment-link" href="#/Kanbas/Courses/1234/Assignments/123">
+                <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
+              </a>
               <div className="d-inline-block">
                 <strong>A2</strong>
                 <br />
@@ -45,7 +49,9 @@ export default function Assignments() {
             </li>
             <li className="wd-assignment list-group-item ps-1">
               <BsGripVertical size={40} className="me-2 fs-3 d-inline-block mb-4" />
-              <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
+              <a className="wd-assignment-link" href="#/Kanbas/Courses/1234/Assignments/123">
+                <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
+              </a>
               <div className="d-inline-block">
                 <strong>A3</strong>
                 <br />
