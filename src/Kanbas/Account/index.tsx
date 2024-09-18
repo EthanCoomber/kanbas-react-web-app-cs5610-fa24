@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router';
-// import AccountNavigation from '../Navigation';
+import AccountNavigation from './Navigation';
 import Profile from './Profile';
 import Signin from './Signin';
 import Signup from './Signup';
@@ -8,9 +8,9 @@ export default function Account() {
     <div id="wd-account-screen">
       <table>
         <tr>
-          {/* <td valign="top">
+          <td valign="top">
             <AccountNavigation />
-          </td> */}
+          </td>
           <td valign="top">
             <Routes>
               <Route path="/" element={<Navigate to="/Kanbas/Account/Signin" />} />
