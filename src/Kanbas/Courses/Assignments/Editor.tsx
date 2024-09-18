@@ -1,119 +1,132 @@
 export default function AssignmentEditor() {
   return (
-    <div id="wd-assignments-editor">
+    <div id="wd-assignments-editor form-group">
       <label htmlFor="wd-name">Assignment Name</label>
-      <input id="wd-name" value="A1 - ENV + HTML" />
+      <br />
+      <input id="wd-name" className="form-control" value="A1" />
       <br />
       <br />
-      <textarea id="wd-description">The assignment is available online Submit a link to the landing page of</textarea>
+      <textarea id="wd-description" className="form-control">
+        {/* <span className="text-danger">available online.</span> */}
+        The assignment is Submit a link to the landing page of
+      </textarea>
       <br />
-      <table>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-points">Points</label>
-          </td>
-          <td>
-            <input id="wd-points" value={100} />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-group">Assignment Group</label>
-          </td>
-          <td>
-            <input id="wd-group" value={100} />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-display-grade-as">Assignment Group</label>
-          </td>
-          <td>
-            <select id="wd-display-grade-as">
-              <option value="Assignments">ASSIGNMENTS</option>
-            </select>
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-submission-type">Submission Type</label>
-          </td>
-          <td>
-            <select id="wd-submission-type">
-              <option value="Assignments">Percentage</option>
-            </select>
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="left" valign="top"></td>
-          <td>
-            <label htmlFor="wd-submission-type">Online Entry Options</label>
-            <br />
-            <input type="checkbox" name="text-entry" id="wd-text-entry" />
-            <label htmlFor="wd-text-entry">Text Entry</label>
-            <br />
+      {/* </td>
+          <td> */}
+      <div className="flex">
+        <input id="wd-points" value={100} className="form-control float-end w-50 me-3" />
+        <span className="float-end me-3">Points</span>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div className="flex">
+        <select id="wd-display-grade-as" className="float-end w-50 form-control">
+          <option value="Assignments">ASSIGNMENTS</option>
+        </select>
+        <span className="float-end me-3">Assignment Group</span>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div className="flex">
+        <select id="wd-display-grade-as" className="float-end w-50 form-control">
+          <option value="Percentage">Percentage</option>
+        </select>
+        <span className="float-end me-3">Display Grade As</span>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div className="flex">
+        <div className="float-end w-50 border rounded border-dark p-3">
+          <select id="wd-display-grade-as" className="float-end form-control">
+            <option value="Online">Online</option>
+          </select>
+          <strong className="p-2 mb-3 mt-3">Online Entry Options</strong>
+          <br />
+          <input type="checkbox" name="text-entry" id="wd-text-entry" className="p-2 mb-3 mt-3 me-2" />
+          <label htmlFor="wd-text-entry">Text Entry</label>
+          <br />
 
-            <input type="checkbox" name="website-url" id="wd-website-url" />
-            <label htmlFor="wd-website-url">Website URL</label>
-            <br />
+          <input type="checkbox" name="website-url" id="wd-website-url" className="p-2 mb-3 mt-3 me-2" />
+          <label htmlFor="wd-website-url">Website URL</label>
+          <br />
 
-            <input type="checkbox" name="media-recordings" id="wd-media-recordings" />
-            <label htmlFor="wd-media-recordings">Media Recordings</label>
-            <br />
+          <input type="checkbox" name="media-recordings" id="wd-media-recordings" className="p-2 mb-3 mt-3 me-2" />
+          <label htmlFor="wd-media-recordings">Media Recordings</label>
+          <br />
 
-            <input type="checkbox" name="student-annotation" id="wd-student-annotation" />
-            <label htmlFor="wd-student-annotation">Student Annotation</label>
-            <br />
+          <input type="checkbox" name="student-annotation" id="wd-student-annotation" className="p-2 mb-3 mt-3 me-2" />
+          <label htmlFor="wd-student-annotation">Student Annotation</label>
+          <br />
 
-            <input type="checkbox" name="file-upload" id="wd-file-upload" />
-            <label htmlFor="wd-file-upload">File Uploads</label>
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-assign-to">Assign</label>
-          </td>
-          <td>
-            <label htmlFor="wd-assign-to">Assign to</label>
-            <br />
-            <input id="wd-assign-to" value={'Everyone'} />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top"></td>
-          <td>
-            <label htmlFor="wd-due-date">Due</label>
-            <br />
-            <input type="date" id="wd-due-date" value="2024-05-13" />
-            <br />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            {/* <label htmlFor="wd-available-from">Available from</label> */}
-          </td>
-          <td>
-            <label htmlFor="wd-available-from">Available from</label>
-            <br />
-            <input type="date" id="wd-available-from" value="2024-05-13" />
-            <br />
-          </td>
-          <td>
-            <label htmlFor="wd-available-until">Until</label>
-            <br />
-            <input type="date" id="wd-available-until" value="2024-05-13" />
-            <br />
-          </td>
-        </tr>
-      </table>
+          <input type="checkbox" name="file-upload" id="wd-file-upload" className="p-2 mb-3 mt-3 me-2" />
+          <label htmlFor="wd-file-upload">File Uploads</label>
+        </div>
+
+        <span className="float-end me-3">Display Grade As</span>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div className="flex">
+        <div className="float-end w-50 border rounded border-dark p-3">
+          <strong className="p-2 mb-3 mt-3">Assign to</strong>
+          <select id="wd-display-grade-as" className="float-end form-control">
+            <option value="Everyone">Everyone</option>
+          </select>
+
+          <br />
+          <br />
+          <br />
+
+          <strong className="p-2 mb-3 mt-3">Due</strong>
+          <br />
+          <input type="date" id="wd-available-until" value="2024-05-13" className="float-end form-control" />
+          <br />
+
+          <br />
+          <strong className="p-2 mt-3 float-end w-50">Available until</strong>
+
+          <strong className="p-2 mt-3 float-end w-50">Available from</strong>
+          <input type="date" id="wd-available-until" value="2024-05-16" className="float-end form-control w-50" />
+          <input type="date" id="wd-available-until" value="2024-05-16" className="float-end form-control w-50" />
+          <br />
+        </div>
+
+        <span className="float-end me-3">Assign</span>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <button id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end margin-right-1">
+        Save
+      </button>
+      <button id="wd-view-progress" className="btn btn-lg btn-secondary float-end me-1" type="button">
+        Cancel
+      </button>
     </div>
   );
 }
