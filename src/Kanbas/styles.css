@@ -34,3 +34,24 @@ body * {
 .wd-assignment {
   border-left: 3px solid green !important;
 }
+.search-input {
+  background: url('react-icons/fa') no-repeat left center;
+  padding-left: 30px; /* Adjust to make room for the icon */
+}
+.input-container {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input {
+  padding-left: 30px; /* Adjust to make room for the icon */
+}
+.search-input {
+  padding-left: 30px; /* Adjust to make room for the icon */
+}
