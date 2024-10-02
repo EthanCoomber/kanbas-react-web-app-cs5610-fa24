@@ -30,7 +30,7 @@ export default function TOC() {
       </li>
       <br />
       <li className="nav-item">
-        <a id="wd-k" href="https://github.com/EthanCoomber" className="nav-link">
+        <a id="wd-github" href="https://github.com/EthanCoomber" className="nav-link">
           Ethan's GitHub
         </a>
       </li>
