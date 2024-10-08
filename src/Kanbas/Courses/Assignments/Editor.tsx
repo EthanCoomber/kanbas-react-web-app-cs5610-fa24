@@ -1,9 +1,22 @@
+import { useParams } from 'react-router';
+import * as db from '../../Database';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
+
 export default function AssignmentEditor() {
+  const { cid } = useParams();
+  const { pathname } = useLocation();
+  const assignments = db.assignments;
+
+  const currCourse = assignments.find((assignment) => assignment._id === pathname.split('/')[5]);
+
+  console.log(currCourse);
+
   return (
     <div id="wd-assignments-editor form-group">
       <label htmlFor="wd-name">Assignment Name</label>
       <br />
-      <input id="wd-name" className="form-control" value="A1" />
+      <input id="wd-name" className="form-control" value={currCourse?.title || ''} />
       <br />
       <br />
       <textarea id="wd-description" className="form-control">
@@ -121,12 +134,17 @@ export default function AssignmentEditor() {
       <br />
       <br />
       <br />
-      <button id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end margin-right-1">
-        Save
-      </button>
-      <button id="wd-view-progress" className="btn btn-lg btn-secondary float-end me-1" type="button">
-        Cancel
-      </button>
+      <Link to={`../../Courses/${cid}/Assignments`}>
+        <button id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end margin-right-1">
+          Save
+        </button>
+      </Link>
+
+      <Link to={`../../Courses/${cid}/Assignments`}>
+        <button id="wd-view-progress" className="btn btn-lg btn-secondary float-end me-1" type="button">
+          Cancel
+        </button>
+      </Link>
     </div>
   );
 }

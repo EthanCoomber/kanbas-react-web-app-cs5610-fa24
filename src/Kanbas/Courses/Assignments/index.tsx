@@ -14,8 +14,6 @@ export default function Assignments() {
   const assignments = db.assignments;
   const { pathname } = useLocation();
 
-  console.log('pathname', pathname);
-
   return (
     <div id="wd-assignments" className="list-group rounded-0">
       <AssignmentControls />
@@ -46,42 +44,6 @@ export default function Assignments() {
                   <AssignmentControlButtons />
                 </li>
               ))}
-            <li className="wd-assignment list-group-item p-2 ps-1">
-              <BsGripVertical size={40} className="me-2 fs-3 mr-2 d-inline-block mb-4" />
-              <a className="wd-assignment-link" href="#/Kanbas/Courses/1234/Assignments/123">
-                <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
-              </a>
-              <div className="d-inline-block">
-                <strong>A1</strong>
-                <br />
-                <span className="text-danger">Multiple Modules</span> | <strong>Not available until</strong> May 6 at 12:00am | <strong>Due</strong> May 13 at 11:59pm | 100pts
-              </div>
-              <AssignmentControlButtons />
-            </li>
-            <li className="wd-assignment list-group-item p-2 ps-1">
-              <BsGripVertical size={40} className="me-2 fs-3 d-inline-block mb-4" />
-              <a className="wd-assignment-link" href="#/Kanbas/Courses/1234/Assignments/123">
-                <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
-              </a>
-              <div className="d-inline-block">
-                <strong>A2</strong>
-                <br />
-                <span className="text-danger">Multiple Modules</span> | <strong>Not available until</strong> May 13 at 12:00am | <strong>Due</strong> May 20 at 11:59pm | 100pts
-              </div>
-              <AssignmentControlButtons />
-            </li>
-            <li className="wd-assignment list-group-item ps-1">
-              <BsGripVertical size={40} className="me-2 fs-3 d-inline-block mb-4" />
-              <a className="wd-assignment-link" href="#/Kanbas/Courses/1234/Assignments/123">
-                <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
-              </a>
-              <div className="d-inline-block">
-                <strong>A3</strong>
-                <br />
-                <span className="text-danger">Multiple Modules</span> | <strong>Not available until</strong> May 20 at 12:00am | <strong>Due</strong> May 27 at 11:59pm | 100pts
-              </div>
-              <AssignmentControlButtons />
-            </li>
           </ul>
         </li>
       </ul>
