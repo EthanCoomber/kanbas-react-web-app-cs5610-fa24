@@ -4,13 +4,20 @@ import AssignmentTopControlButtons from './AssignmentTopControlButtons';
 import AssignmentControls from './AssignmentControls';
 import { FaEdit } from 'react-icons/fa';
 import { FaCaretDown } from 'react-icons/fa';
+import { useParams } from 'react-router';
+import * as db from '../../Database';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments;
+  const { pathname } = useLocation();
+
+  console.log('pathname', pathname);
+
   return (
     <div id="wd-assignments" className="list-group rounded-0">
-      {/* <input id="wd-search-assignment" placeholder="Search for Assignments" />
-      <button id="wd-add-assignment-group">+ Group</button>
-      <button id="wd-add-assignment">+ Assignment</button> */}
       <AssignmentControls />
       <br />
       <br />
@@ -23,6 +30,22 @@ export default function Assignments() {
             <AssignmentTopControlButtons />
           </div>
           <ul className="wd-assignment list-group rounded-0">
+            {assignments
+              .filter((assignment: any) => assignment.course === cid)
+              .map((assignment: any) => (
+                <li className="wd-assignment list-group-item p-2 ps-1">
+                  <BsGripVertical size={40} className="me-2 fs-3 mr-2 d-inline-block mb-4" />
+                  <Link className="wd-assignment-link" to={`${assignment._id}`}>
+                    <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
+                  </Link>
+                  <div className="d-inline-block">
+                    <strong>{assignment.title}</strong>
+                    <br />
+                    <span className="text-danger">Multiple Modules</span> | <strong>Not available until</strong> May 6 at 12:00am | <strong>Due</strong> May 13 at 11:59pm | 100pts
+                  </div>
+                  <AssignmentControlButtons />
+                </li>
+              ))}
             <li className="wd-assignment list-group-item p-2 ps-1">
               <BsGripVertical size={40} className="me-2 fs-3 mr-2 d-inline-block mb-4" />
               <a className="wd-assignment-link" href="#/Kanbas/Courses/1234/Assignments/123">
