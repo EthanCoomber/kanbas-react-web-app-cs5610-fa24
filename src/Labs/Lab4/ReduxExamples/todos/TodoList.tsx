@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
+import { useSelector } from 'react-redux';
 
 export default function TodoList() {
   const [todos, setTodos] = useState([
@@ -26,9 +27,9 @@ export default function TodoList() {
     <div>
       <h2>Todo List</h2>
       <ul className="list-inline w-25">
-        <TodoForm todo={todo} setTodo={setTodo} addTodo={addTodo} updateTodo={updateTodo} />
-        {todos.map((todo) => (
-          <TodoItem todo={todo} deleteTodo={deleteTodo} setTodo={setTodo} />
+        <TodoForm />
+        {todos.map((todo: any) => (
+          <TodoItem todo={todo} />
         ))}
       </ul>
       <hr />
