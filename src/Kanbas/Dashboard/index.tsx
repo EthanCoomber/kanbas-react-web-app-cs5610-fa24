@@ -1,55 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as db from '../Database';
-export default function Dashboard() {
-  const [courses, setCourses] = useState(db.courses);
-  const [course, setCourse] = useState<any>({
-    _id: '0',
-    name: 'New Course',
-    number: 'New Number',
-    startDate: '2023-09-10',
-    endDate: '2023-12-15',
-    image: '/images/reactjs.jpg',
-    description: 'New Description',
-  });
-
-  const addNewCourse = () => {
-    const newCourse = { ...course, _id: new Date().getTime().toString() };
-    setCourses([...courses, { ...course, ...newCourse }]);
-  };
-
-  const deleteCourse = (courseId: string) => {
-    setCourses(courses.filter((course) => course._id !== courseId));
-  };
-
-  const updateCourse = () => {
-    setCourses(
-      courses.map((c) => {
-        if (c._id === course._id) {
-          return course;
-        } else {
-          return c;
-        }
-      })
-    );
-  };
-
-  const editCourse = (courseId: string) => {
-    console.log('courseId', courseId);
-
-    const courseToEdit = courses.find((course) => course._id === courseId);
-    console.log('courseToEdit', courseToEdit);
-    setCourse({
-      _id: courseToEdit?._id,
-      name: courseToEdit?.name,
-      number: courseToEdit?.number,
-      startDate: courseToEdit?.startDate,
-      endDate: courseToEdit?.endDate,
-      image: '/images/reactjs.jpg',
-      description: courseToEdit?.description,
-    });
-  };
-
+export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse, editCourse }: { courses: any[]; course: any; setCourse: (course: any) => void; addNewCourse: () => void; deleteCourse: (course: any) => void; updateCourse: () => void; editCourse: (course: any) => void }) {
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
