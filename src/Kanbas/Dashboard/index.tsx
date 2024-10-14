@@ -22,6 +22,34 @@ export default function Dashboard() {
     setCourses(courses.filter((course) => course._id !== courseId));
   };
 
+  const updateCourse = () => {
+    setCourses(
+      courses.map((c) => {
+        if (c._id === course._id) {
+          return course;
+        } else {
+          return c;
+        }
+      })
+    );
+  };
+
+  const editCourse = (courseId: string) => {
+    console.log('courseId', courseId);
+
+    const courseToEdit = courses.find((course) => course._id === courseId);
+    console.log('courseToEdit', courseToEdit);
+    setCourse({
+      _id: courseToEdit?._id,
+      name: courseToEdit?.name,
+      number: courseToEdit?.number,
+      startDate: courseToEdit?.startDate,
+      endDate: courseToEdit?.endDate,
+      image: '/images/reactjs.jpg',
+      description: courseToEdit?.description,
+    });
+  };
+
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
@@ -30,6 +58,9 @@ export default function Dashboard() {
         <button className="btn btn-primary float-end" id="wd-add-new-course-click" onClick={addNewCourse}>
           {' '}
           Add{' '}
+        </button>
+        <button className="btn btn-warning float-end me-2" onClick={updateCourse} id="wd-update-course-click">
+          Update
         </button>
       </h5>
       <input value={course.name} className="form-control mb-2" onChange={(e) => setCourse({ ...course, name: e.target.value })} />
@@ -59,6 +90,15 @@ export default function Dashboard() {
                       id="wd-delete-course-click"
                     >
                       Delete
+                    </button>
+                    <button
+                      className="btn btn-warning float-end me-2"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        editCourse(course._id);
+                      }}
+                    >
+                      Edit
                     </button>
                   </div>
                 </Link>
