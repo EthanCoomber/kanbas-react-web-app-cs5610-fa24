@@ -1,3 +1,6 @@
+import React from 'react';
+import ReduxExamples from './ReduxExamples';
+
 import ArrayStateVariable from './ArrayStateVariable';
 import BooleanStateVariables from './BooleanStateVariables';
 import ClickEvent from './ClickEvent';
@@ -29,6 +32,7 @@ export default function Lab4() {
       <ObjectStateVariable />
       <ArrayStateVariable />
       <ParentStateComponent />
+      <ReduxExamples />
     </div>
   );
 }
