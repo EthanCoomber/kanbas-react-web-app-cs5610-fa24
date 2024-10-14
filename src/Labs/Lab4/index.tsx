@@ -12,6 +12,7 @@ import ParentStateComponent from './ParentStateComponent';
 import PassingDataOnEvent from './PassingDataOnEvent';
 import PassingFunctions from './PassingFunctions';
 import StringStateVariables from './StringStateVariables';
+import TodoList from './ReduxExamples/todos/TodoList';
 
 export default function Lab4() {
   function sayHello() {
@@ -33,6 +34,7 @@ export default function Lab4() {
       <ArrayStateVariable />
       <ParentStateComponent />
       <ReduxExamples />
+      <TodoList />
     </div>
   );
 }
