@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import LessonControlButtons from './LessonControlButtons';
 import ModulesControls from './ModulesControls';
 import { BsGripVertical } from 'react-icons/bs';
@@ -7,10 +9,16 @@ import * as db from '../../Database';
 
 export default function Modules() {
   const { cid } = useParams();
-  const modules = db.modules;
+  const [modules, setModules] = useState<any[]>(db.modules);
+  const [moduleName, setModuleName] = useState('');
+  const addModule = () => {
+    setModules([...modules, { _id: new Date().getTime().toString(), name: moduleName, course: cid, lessons: [] }]);
+    setModuleName('');
+  };
+
   return (
     <div>
-      <ModulesControls />
+      <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={addModule} />
       <br />
       <br />
       <br />
