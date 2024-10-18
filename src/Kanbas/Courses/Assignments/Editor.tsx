@@ -11,25 +11,25 @@ export default function AssignmentEditor() {
 
   console.log('assignments', assignments);
 
-  const courseId = pathname.split('/')[5];
+  const assignmentId = pathname.split('/')[5];
 
-  const currCourse = assignments.find((assignment: { _id: string }) => assignment._id === courseId);
+  const currAssignment = assignments.find((assignment: { _id: string }) => assignment._id === assignmentId);
 
-  console.log(currCourse);
+  console.log(currAssignment);
 
   return (
     <div id="wd-assignments-editor form-group">
       <label htmlFor="wd-name">Assignment Name</label>
       <br />
-      <input id="wd-name" className="form-control" value={currCourse?.title || ''} />
+      <input id="wd-name" className="form-control" value={currAssignment?.title || ''} />
       <br />
       <br />
-      <textarea id="wd-description" className="form-control" value={courseId === 'new' ? currCourse?.description : currCourse?.description} />
+      <textarea id="wd-description" className="form-control" value={currAssignment?.description || ''} />
       <br />
       {/* </td>
           <td> */}
       <div className="flex">
-        <input id="wd-points" value={100} className="form-control float-end w-50 me-3" />
+        <input id="wd-points" value={currAssignment?.points || ''} className="form-control float-end w-50 me-3" />
         <span className="float-end me-3">Points</span>
       </div>
       <br />
@@ -117,8 +117,8 @@ export default function AssignmentEditor() {
           <strong className="p-2 mt-3 float-end w-50">Available until</strong>
 
           <strong className="p-2 mt-3 float-end w-50">Available from</strong>
-          <input type="date" id="wd-available-until" value="2024-05-16" className="float-end form-control w-50" />
-          <input type="date" id="wd-available-until" value="2024-05-16" className="float-end form-control w-50" />
+          <input type="date" id="wd-available-from" value={currAssignment?.points || ''} className="float-end form-control w-50" />
+          <input type="date" id="wd-available-until" value={currAssignment?.points || ''} className="float-end form-control w-50" />
           <br />
         </div>
 
