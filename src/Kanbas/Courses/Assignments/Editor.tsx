@@ -1,14 +1,19 @@
 import { useParams } from 'react-router';
-import * as db from '../../Database';
+// import * as db from '../../Database';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function AssignmentEditor() {
   const { cid } = useParams();
   const { pathname } = useLocation();
-  const assignments = db.assignments;
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
 
-  const currCourse = assignments.find((assignment) => assignment._id === pathname.split('/')[5]);
+  console.log('assignments', assignments);
+
+  const courseId = pathname.split('/')[5];
+
+  const currCourse = assignments.find((assignment: { _id: string }) => assignment._id === courseId);
 
   console.log(currCourse);
 
@@ -19,10 +24,7 @@ export default function AssignmentEditor() {
       <input id="wd-name" className="form-control" value={currCourse?.title || ''} />
       <br />
       <br />
-      <textarea id="wd-description" className="form-control">
-        {/* <span className="text-danger">available online.</span> */}
-        The assignment is Submit a link to the landing page of
-      </textarea>
+      <textarea id="wd-description" className="form-control" value={courseId === 'new' ? currCourse?.description : currCourse?.description} />
       <br />
       {/* </td>
           <td> */}

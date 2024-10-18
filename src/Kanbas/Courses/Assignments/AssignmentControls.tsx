@@ -1,16 +1,24 @@
 import { FaPlus } from 'react-icons/fa6';
 import { FaSearch } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 // import GreenCheckmark from './GreenCheckmark';
 export default function AssignmentControls() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const navigate = useNavigate();
+  const location = useLocation(); // Get the current location
+
+  const handleClick = () => {
+    // Navigate to the new URL
+    navigate(`${location.pathname}/new`);
+  };
 
   return (
     <div id="wd-assignment-controls" className="text-nowrap">
       {currentUser.role === 'FACULTY' && (
         <>
-          <button id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end margin-right-1">
+          <button onClick={handleClick} id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end margin-right-1">
             <FaPlus className="position-relative me-2" style={{ bottom: '1px' }} />
             Assignment
           </button>
