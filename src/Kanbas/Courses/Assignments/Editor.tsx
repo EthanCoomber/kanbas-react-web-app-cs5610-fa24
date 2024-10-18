@@ -4,13 +4,15 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { addAssignment, deleteAssignment, updateAssignment, editAssignment } from './reducer';
 
 export default function AssignmentEditor() {
   const { cid } = useParams();
   const { pathname } = useLocation();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
 
-  console.log('assignments', assignments);
+  const dispatch = useDispatch();
 
   const assignmentId = pathname.split('/')[5];
 
@@ -19,7 +21,7 @@ export default function AssignmentEditor() {
   const [currAssignment, setCurrAssignment] = useState({
     _id: '',
     title: '',
-    course: '',
+    course: cid,
     name: '',
     description: '',
     points: 0,
@@ -28,19 +30,30 @@ export default function AssignmentEditor() {
     availableUntilDate: '',
   });
 
+  console.log('currentUser', currentUser);
+  console.log('currAssignment', currAssignment);
+
   useEffect(() => {
     if (foundAssignment) {
       setCurrAssignment(foundAssignment);
     }
   }, [foundAssignment]);
 
-  console.log(currAssignment);
+  const handleSubmit = () => {
+    if (foundAssignment) {
+      console.log('updating');
+      dispatch(updateAssignment(currAssignment));
+    } else {
+      console.log('adding');
+      dispatch(addAssignment(currAssignment));
+    }
+  };
 
   return (
     <div id="wd-assignments-editor form-group">
-      <label htmlFor="wd-name">Assignment Name</label>
+      <label htmlFor="wd-name">{currAssignment?.name || 'Assignment Name'}</label>
       <br />
-      <input id="wd-name" className="form-control" value={currAssignment?.name || ''} onChange={(e) => setCurrAssignment({ ...currAssignment, name: e.target.value })} />
+      <input id="wd-name" className="form-control" value={currAssignment?.title || ''} onChange={(e) => setCurrAssignment({ ...currAssignment, title: e.target.value })} />
       <br />
       <br />
       <textarea id="wd-description" className="form-control" value={currAssignment?.description || ''} onChange={(e) => setCurrAssignment({ ...currAssignment, description: e.target.value })} />
@@ -156,7 +169,7 @@ export default function AssignmentEditor() {
       <br />
       <br />
       <Link to={`../../Courses/${cid}/Assignments`}>
-        <button id="wd-add-assignment-btn" className="btn btn-lg btn-danger me-1 float-end margin-right-1">
+        <button id="wd-add-assignment-btn" onClick={handleSubmit} className="btn btn-lg btn-danger me-1 float-end margin-right-1">
           Save
         </button>
       </Link>
