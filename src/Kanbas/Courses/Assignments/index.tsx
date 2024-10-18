@@ -5,15 +5,17 @@ import AssignmentControls from './AssignmentControls';
 import { FaEdit } from 'react-icons/fa';
 import { FaCaretDown } from 'react-icons/fa';
 import { useParams } from 'react-router';
-import * as db from '../../Database';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAssignment } from './reducer';
 
 export default function Assignments() {
   const { cid } = useParams();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
   console.log('assignments', assignments);
@@ -47,7 +49,12 @@ export default function Assignments() {
                     <br />
                     <span className="text-danger">Multiple Modules</span> | <strong>Not available until</strong> May 6 at 12:00am | <strong>Due</strong> May 13 at 11:59pm | 100pts
                   </div>
-                  <AssignmentControlButtons />
+                  <AssignmentControlButtons
+                    assignmentId={assignment._id}
+                    deleteAssignment={(assignmentId) => {
+                      dispatch(deleteAssignment(assignmentId));
+                    }}
+                  />
                 </li>
               ))}
           </ul>

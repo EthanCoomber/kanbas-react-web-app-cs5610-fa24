@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { addAssignment, deleteAssignment, updateAssignment, editAssignment } from './reducer';
+import { addAssignment, updateAssignment } from './reducer';
 
 export default function AssignmentEditor() {
   const { cid } = useParams();
