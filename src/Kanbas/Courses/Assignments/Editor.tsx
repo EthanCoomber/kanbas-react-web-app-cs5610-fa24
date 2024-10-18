@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 export default function AssignmentEditor() {
   const { cid } = useParams();
@@ -13,7 +14,25 @@ export default function AssignmentEditor() {
 
   const assignmentId = pathname.split('/')[5];
 
-  const currAssignment = assignments.find((assignment: { _id: string }) => assignment._id === assignmentId);
+  const foundAssignment = assignments.find((assignment: { _id: string }) => assignment._id === assignmentId);
+
+  const [currAssignment, setCurrAssignment] = useState({
+    _id: '',
+    title: '',
+    course: '',
+    name: '',
+    description: '',
+    points: 0,
+    dueDate: '',
+    availableFromDate: '',
+    availableUntilDate: '',
+  });
+
+  useEffect(() => {
+    if (foundAssignment) {
+      setCurrAssignment(foundAssignment);
+    }
+  }, [foundAssignment]);
 
   console.log(currAssignment);
 
@@ -21,15 +40,15 @@ export default function AssignmentEditor() {
     <div id="wd-assignments-editor form-group">
       <label htmlFor="wd-name">Assignment Name</label>
       <br />
-      <input id="wd-name" className="form-control" value={currAssignment?.title || ''} />
+      <input id="wd-name" className="form-control" value={currAssignment?.name || ''} onChange={(e) => setCurrAssignment({ ...currAssignment, name: e.target.value })} />
       <br />
       <br />
-      <textarea id="wd-description" className="form-control" value={currAssignment?.description || ''} />
+      <textarea id="wd-description" className="form-control" value={currAssignment?.description || ''} onChange={(e) => setCurrAssignment({ ...currAssignment, description: e.target.value })} />
       <br />
       {/* </td>
           <td> */}
       <div className="flex">
-        <input id="wd-points" value={currAssignment?.points || ''} className="form-control float-end w-50 me-3" />
+        <input id="wd-points" type="number" value={currAssignment?.points || 0} onChange={(e) => setCurrAssignment({ ...currAssignment, points: Number(e.target.value) })} className="form-control float-end w-50 me-3" />
         <span className="float-end me-3">Points</span>
       </div>
       <br />
@@ -110,15 +129,15 @@ export default function AssignmentEditor() {
 
           <strong className="p-2 mb-3 mt-3">Due</strong>
           <br />
-          <input type="date" id="wd-available-until" value="2024-05-13" className="float-end form-control" />
+          <input type="date" id="wd-available-until" value={currAssignment?.dueDate || ''} onChange={(e) => setCurrAssignment({ ...currAssignment, dueDate: e.target.value })} className="float-end form-control" />
           <br />
 
           <br />
           <strong className="p-2 mt-3 float-end w-50">Available until</strong>
 
           <strong className="p-2 mt-3 float-end w-50">Available from</strong>
-          <input type="date" id="wd-available-from" value={currAssignment?.points || ''} className="float-end form-control w-50" />
-          <input type="date" id="wd-available-until" value={currAssignment?.points || ''} className="float-end form-control w-50" />
+          <input type="date" id="wd-available-from" value={currAssignment?.availableFromDate || ''} onChange={(e) => setCurrAssignment({ ...currAssignment, availableFromDate: e.target.value })} className="float-end form-control w-50" />
+          <input type="date" id="wd-available-until" value={currAssignment?.availableUntilDate || ''} onChange={(e) => setCurrAssignment({ ...currAssignment, availableUntilDate: e.target.value })} className="float-end form-control w-50" />
           <br />
         </div>
 
