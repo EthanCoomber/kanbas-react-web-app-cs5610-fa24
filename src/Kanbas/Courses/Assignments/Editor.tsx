@@ -115,7 +115,7 @@ export default function AssignmentEditor() {
           <strong className="p-2 mt-3 float-end w-50">Available until</strong>
 
           <strong className="p-2 mt-3 float-end w-50">Available from</strong>
-          <input type="date" id="wd-available-until" value="2024-05-16" className="float-end form-control w-50" />
+          <input type="date" id="wd-available-from" value="2024-05-16" className="float-end form-control w-50" />
           <input type="date" id="wd-available-until" value="2024-05-16" className="float-end form-control w-50" />
           <br />
         </div>
