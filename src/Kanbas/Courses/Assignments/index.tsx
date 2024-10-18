@@ -8,11 +8,13 @@ import { useParams } from 'react-router';
 import * as db from '../../Database';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Assignments() {
   const { cid } = useParams();
   const assignments = db.assignments;
   const { pathname } = useLocation();
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
 
   return (
     <div id="wd-assignments" className="list-group rounded-0">
@@ -33,9 +35,11 @@ export default function Assignments() {
               .map((assignment: any) => (
                 <li className="wd-assignment list-group-item p-2 ps-1">
                   <BsGripVertical size={40} className="me-2 fs-3 mr-2 d-inline-block mb-4" />
-                  <Link className="wd-assignment-link" to={`${assignment._id}`}>
-                    <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
-                  </Link>
+                  {currentUser.role === 'FACULTY' && (
+                    <Link className="wd-assignment-link" to={`${assignment._id}`}>
+                      <FaEdit size={30} color="green" className="me-4 d-inline-block mb-4" />
+                    </Link>
+                  )}
                   <div className="d-inline-block">
                     <strong>{assignment.title}</strong>
                     <br />

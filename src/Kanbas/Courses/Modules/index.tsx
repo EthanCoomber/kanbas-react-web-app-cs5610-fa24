@@ -14,17 +14,20 @@ export default function Modules() {
   const [moduleName, setModuleName] = useState('');
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
 
   return (
     <div className="wd-modules">
-      <ModulesControls
-        moduleName={moduleName}
-        setModuleName={setModuleName}
-        addModule={() => {
-          dispatch(addModule({ name: moduleName, course: cid }));
-          setModuleName('');
-        }}
-      />
+      {currentUser.role === 'FACULTY' && (
+        <ModulesControls
+          moduleName={moduleName}
+          setModuleName={setModuleName}
+          addModule={() => {
+            dispatch(addModule({ name: moduleName, course: cid }));
+            setModuleName('');
+          }}
+        />
+      )}
 
       <br />
       <br />
