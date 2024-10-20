@@ -11,6 +11,7 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
   const dispatch = useDispatch();
 
   const [showAllCourses, setShowAllCourses] = useState(false); // State to toggle between all courses and enrolled courses
+  const [enrollmentIdCounter, setEnrollmentIdCounter] = useState(10);
 
   // Check if a student is enrolled in the course
   const isEnrolled = (courseId: string) => enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === courseId);
@@ -25,7 +26,8 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
       console.log('foundCourse', foundCourse);
       dispatch(unenrollFromCourse({ enrollmentId: foundCourse._id })); // Unenroll action
     } else {
-      dispatch(enrollInCourse({ user_id: currentUser._id, course_id: courseId })); // Enroll action
+      dispatch(enrollInCourse({ id: enrollmentIdCounter, user_id: currentUser._id, course_id: courseId })); // Enroll action
+      setEnrollmentIdCounter(enrollmentIdCounter + 1);
     }
   };
 
