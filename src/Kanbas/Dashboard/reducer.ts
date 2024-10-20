@@ -11,14 +11,23 @@ const enrollmentsSlice = createSlice({
   reducers: {
     enrollInCourse: (state, { payload: enrollment }) => {
       const newEnrollment: any = {
-        _id: new Date(),
+        _id: '11',
         user: enrollment.user_id,
         course: enrollment.course_id,
       };
       state.enrollments = [...state.enrollments, newEnrollment] as any;
     },
     unenrollFromCourse: (state, { payload: enrollment }) => {
-      state.enrollments = state.enrollments.filter((m: any) => m.course !== enrollment.course_id && m.user !== enrollment.user_id);
+      console.log('state.enrollments', state.enrollments);
+
+      state.enrollments = state.enrollments.filter((m: any) => m._id !== enrollment.enrollmentId);
+
+      //   const foundEnrollment = state.enrollments.find((m: any) => {
+      //     console.log('testing: ', m.course !== enrollment.course_id && m.user !== enrollment.user_id, m.course, enrollment.course_id, m.user, enrollment.user_id);
+      //     return m.course !== enrollment.course_id && m.user !== enrollment.user_id;
+      //   });
+      //   console.log('found enrollment', foundEnrollment);
+      //   state.enrollments = state.enrollments.filter((m: any) => m.course !== enrollment.course_id && m.user !== enrollment.user_id);
     },
   },
 });
