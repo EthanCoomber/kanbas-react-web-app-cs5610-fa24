@@ -15,12 +15,14 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
   // Check if a student is enrolled in the course
   const isEnrolled = (courseId: string) => enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === courseId);
 
+  console.log('currentUser', currentUser);
   // Toggle enrollment for the course
   const handleToggleEnrollment = (courseId: string) => {
+    console.log('courseId', courseId);
     if (isEnrolled(courseId)) {
-      dispatch(unenrollFromCourse({ user: currentUser._id, course: courseId })); // Unenroll action
+      dispatch(unenrollFromCourse({ user_id: currentUser._id, course_id: courseId })); // Unenroll action
     } else {
-      dispatch(enrollInCourse({ user: currentUser._id, course: courseId })); // Enroll action
+      dispatch(enrollInCourse({ user_id: currentUser._id, course_id: courseId })); // Enroll action
     }
   };
 
