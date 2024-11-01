@@ -1,3 +1,4 @@
+import PathParameters from './PathParameters';
 import EnvironmentVariables from './EnvironmentVariables';
 export default function Lab5() {
   return (
@@ -10,6 +11,7 @@ export default function Lab5() {
       </div>
       <hr />
       <EnvironmentVariables />
+      <PathParameters />
     </div>
   );
 }
