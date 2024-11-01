@@ -2,6 +2,7 @@ import PathParameters from './PathParameters';
 import EnvironmentVariables from './EnvironmentVariables';
 import QueryParameters from './QueryParameters';
 import WorkingWithObjects from './WorkingWithObjects';
+import WorkingWithArrays from './WorkingWithArrays';
 export default function Lab5() {
   return (
     <div id="wd-lab5">
@@ -16,6 +17,7 @@ export default function Lab5() {
       <PathParameters />
       <QueryParameters />
       <WorkingWithObjects />
+      <WorkingWithArrays />
     </div>
   );
 }
