@@ -1,5 +1,6 @@
 import PathParameters from './PathParameters';
 import EnvironmentVariables from './EnvironmentVariables';
+import QueryParameters from './QueryParameters';
 export default function Lab5() {
   return (
     <div id="wd-lab5">
@@ -12,6 +13,7 @@ export default function Lab5() {
       <hr />
       <EnvironmentVariables />
       <PathParameters />
+      <QueryParameters />
     </div>
   );
 }
