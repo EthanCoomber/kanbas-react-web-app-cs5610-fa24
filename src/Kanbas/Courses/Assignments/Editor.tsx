@@ -5,12 +5,23 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { addAssignment, updateAssignment } from './reducer';
+import * as client from './client';
 
 export default function AssignmentEditor() {
   const { cid } = useParams();
   const { pathname } = useLocation();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+
+  const saveAssignment = async (assignment: any) => {
+    const status = await client.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
+  };
+
+  const createAssignment = async (assignment: any) => {
+    const newModule = await client.createAssignment(cid as string, assignment);
+    dispatch(addAssignment(newModule));
+  };
 
   const dispatch = useDispatch();
 
@@ -42,10 +53,10 @@ export default function AssignmentEditor() {
   const handleSubmit = () => {
     if (foundAssignment) {
       console.log('updating');
-      dispatch(updateAssignment(currAssignment));
+      saveAssignment(currAssignment);
     } else {
       console.log('adding');
-      dispatch(addAssignment(currAssignment));
+      createAssignment(currAssignment);
     }
   };
 
