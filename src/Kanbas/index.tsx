@@ -4,14 +4,22 @@ import Dashboard from './Dashboard';
 import KanbasNavigation from './Navigation';
 import Courses from './Courses';
 import './styles.css';
-import * as db from './Database';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import store from './store';
 import { Provider } from 'react-redux';
 import ProtectedRoute from './Account/ProtectedRoute';
+import * as client from './Courses/client';
 
 export default function Kanbas() {
-  const [courses, setCourses] = useState(db.courses);
+  const [courses, setCourses] = useState<any[]>([]);
+  const fetchCourses = async () => {
+    const courses = await client.fetchAllCourses();
+    setCourses(courses);
+  };
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
   const [course, setCourse] = useState<any>({
     _id: '0',
     name: 'New Course',
