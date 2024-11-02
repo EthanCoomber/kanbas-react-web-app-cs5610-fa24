@@ -9,7 +9,7 @@ export const createAssignment = async (courseId: string, assignment: any) => {
   const response = await axios.post(`${COURSES_API}/${courseId}/modules`, assignment);
   return response.data;
 };
-const MODULES_API = `${REMOTE_SERVER}/api/modules`;
+const MODULES_API = `${REMOTE_SERVER}/api/assignments`;
 export const deleteAssignment = async (assignmentId: string) => {
   const response = await axios.delete(`${MODULES_API}/${assignmentId}`);
   return response.data;
