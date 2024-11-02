@@ -15,10 +15,26 @@ export default function Modules() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
+  const createModule = async (module: any) => {
+    const newModule = await client.createModule(cid as string, module);
+    dispatch(addModule(newModule));
+  };
+
   const fetchModules = async () => {
     const modules = await client.findModulesForCourse(cid as string);
     dispatch(setModules(modules));
   };
+
+  const removeModule = async (moduleId: string) => {
+    await client.deleteModule(moduleId);
+    dispatch(deleteModule(moduleId));
+  };
+
+  const saveModule = async (module: any) => {
+    const status = await client.updateModule(module);
+    dispatch(updateModule(module));
+  };
+
   useEffect(() => {
     fetchModules();
   }, []);
@@ -30,7 +46,7 @@ export default function Modules() {
           moduleName={moduleName}
           setModuleName={setModuleName}
           addModule={() => {
-            dispatch(addModule({ name: moduleName, course: cid }));
+            createModule({ name: moduleName, course: cid });
             setModuleName('');
           }}
         />
@@ -52,10 +68,10 @@ export default function Modules() {
                 {module.editing && (
                   <input
                     className="form-control w-50 d-inline-block"
-                    onChange={(e) => dispatch(updateModule({ ...module, name: e.target.value }))}
+                    onChange={(e) => saveModule({ ...module, name: e.target.value })}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
-                        dispatch(updateModule({ ...module, editing: false }));
+                        saveModule({ ...module, editing: false });
                       }
                     }}
                     value={module.name}
@@ -65,7 +81,7 @@ export default function Modules() {
                 <ModuleControlButtons
                   moduleId={module._id}
                   deleteModule={(moduleId) => {
-                    dispatch(deleteModule(moduleId));
+                    removeModule(moduleId);
                   }}
                   editModule={(moduleId) => dispatch(editModule(moduleId))}
                 />
