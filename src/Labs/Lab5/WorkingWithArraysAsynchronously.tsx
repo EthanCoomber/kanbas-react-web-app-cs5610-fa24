@@ -9,6 +9,10 @@ export default function WorkingWithArraysAsynchronously() {
     const todos = await client.createTodo();
     setTodos(todos);
   };
+  const postTodo = async () => {
+    const newTodo = await client.postTodo({ title: 'New Posted Todo', completed: false });
+    setTodos([...todos, newTodo]);
+  };
 
   const fetchTodos = async () => {
     const todos = await client.fetchTodos();
@@ -27,6 +31,7 @@ export default function WorkingWithArraysAsynchronously() {
       <h3>Working with Arrays Asynchronously</h3>
       <h4>Todos</h4>
       <FaPlusCircle onClick={createTodo} className="text-success float-end fs-3" id="wd-create-todo" />
+      <FaPlusCircle onClick={postTodo} className="text-primary float-end fs-3 me-3" id="wd-post-todo" />
       <ul className="list-group">
         {todos.map((todo) => (
           <li key={todo.id} className="list-group-item">
