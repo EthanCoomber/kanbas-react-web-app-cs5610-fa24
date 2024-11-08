@@ -48,7 +48,7 @@ export default function WorkingWithArraysAsynchronously() {
     } catch (error: any) {
       setErrorMessage(error.response.data.message);
     }
-
+  };
 
   useEffect(() => {
     fetchTodos();
@@ -57,9 +57,10 @@ export default function WorkingWithArraysAsynchronously() {
     <div id="wd-asynchronous-arrays">
       <h3>Working with Arrays Asynchronously</h3>
       {errorMessage && (
-        <div id="wd-todo-error-message" className="alert alert-danger mb-2 mt-2">{errorMessage}</div>
+        <div id="wd-todo-error-message" className="alert alert-danger mb-2 mt-2">
+          {errorMessage}
+        </div>
       )}
-
       <h4>Todos</h4>
       <FaPlusCircle onClick={createTodo} className="text-success float-end fs-3" id="wd-create-todo" />
       <FaPlusCircle onClick={postTodo} className="text-primary float-end fs-3 me-3" id="wd-post-todo" />

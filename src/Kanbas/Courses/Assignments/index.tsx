@@ -19,7 +19,9 @@ export default function Assignments() {
   const dispatch = useDispatch();
 
   const fetchAssignment = async () => {
+    console.log('cid as string', cid as string);
     const modules = await client.findAssignmentForCourse(cid as string);
+    console.log('modules', assignments);
     dispatch(setAssignments(modules));
   };
 
