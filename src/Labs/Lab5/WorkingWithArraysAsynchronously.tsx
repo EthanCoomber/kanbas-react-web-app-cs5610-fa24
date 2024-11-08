@@ -37,9 +37,10 @@ export default function WorkingWithArraysAsynchronously() {
   };
 
   const editTodo = (todo: any) => {
-    const updatedTodos = todos.map((t) => (t.id === todo.id ? { ...todo, editing: true } : t));
+    const updatedTodos = todos.map((t) => (t.id === todo.id ? { ...todo, editing: !todo.editing } : t));
     setTodos(updatedTodos);
   };
+
   const [errorMessage, setErrorMessage] = useState(null);
   const updateTodo = async (todo: any) => {
     try {
