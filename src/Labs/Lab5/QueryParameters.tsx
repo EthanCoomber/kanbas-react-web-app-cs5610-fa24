@@ -16,10 +16,10 @@ export default function QueryParameters() {
       </a>
       {/* create additional links to test multiply and divide. use IDs starting with wd-query-parameter- */}
       <a id="wd-query-parameter-multiply" className="btn btn-success me-2" href={`${REMOTE_SERVER}/lab5/calculator?operation=multiply&a=${a}&b=${b}`}>
-        Multiply {a} + {b}
+        Multiply {a} * {b}
       </a>
       <a id="wd-query-parameter-divide" className="btn btn-warning me-2" href={`${REMOTE_SERVER}/lab5/calculator?operation=divide&a=${a}&b=${b}`}>
-        Divide {a} - {b}
+        Divide {a} / {b}
       </a>
       <hr />
     </div>
