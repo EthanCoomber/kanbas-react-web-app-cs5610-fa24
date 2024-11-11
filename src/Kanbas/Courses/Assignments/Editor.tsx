@@ -41,9 +41,6 @@ export default function AssignmentEditor() {
     availableUntilDate: '',
   });
 
-  console.log('currentUser', currentUser);
-  console.log('currAssignment', currAssignment);
-
   useEffect(() => {
     if (foundAssignment) {
       setCurrAssignment(foundAssignment);
