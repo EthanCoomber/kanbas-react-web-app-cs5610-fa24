@@ -14,10 +14,13 @@ import * as userClient from './Account/client';
 export default function Kanbas() {
   const [courses, setCourses] = useState<any[]>([]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  console.log(currentUser);
   const fetchCourses = async () => {
     let courses = [];
     try {
+      console.log('here');
       courses = await userClient.findMyCourses();
+      console.log('courses', courses);
     } catch (error) {
       console.error(error);
     }
@@ -27,9 +30,9 @@ export default function Kanbas() {
     fetchCourses();
   }, [currentUser]);
 
-  useEffect(() => {
-    fetchCourses();
-  }, []);
+  // useEffect(() => {
+  //   fetchCourses();
+  // }, []);
 
   const [course, setCourse] = useState<any>({
     _id: '0',
