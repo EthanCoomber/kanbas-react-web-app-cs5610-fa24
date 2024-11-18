@@ -34,6 +34,11 @@ export const signout = async () => {
   return response.data;
 };
 
+export const createCourse = async (course: any) => {
+  const { data } = await axiosWithCredentials.post(`${USERS_API}/current/courses`, course);
+  return data;
+};
+
 // export const findMyCourses = async () => {
 //   console.log('finding courses');
 //   const { data } = await axiosWithCredentials.get(`${USERS_API}/current/courses`);

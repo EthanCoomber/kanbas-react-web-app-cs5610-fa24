@@ -44,10 +44,10 @@ export default function Kanbas() {
     description: 'New Description',
   });
 
-  const addNewCourse = async () => {
-    const newCourse = await client.createCourse(course);
-    setCourses([...courses, newCourse]);
-  };
+  // const addNewCourse = async () => {
+  //   const newCourse = await client.createCourse(course);
+  //   setCourses([...courses, newCourse]);
+  // };
 
   const deleteCourse = async (courseId: string) => {
     await client.deleteCourse(courseId);
@@ -81,6 +81,11 @@ export default function Kanbas() {
       image: '/images/reactjs.jpg',
       description: courseToEdit?.description,
     });
+  };
+
+  const addNewCourse = async () => {
+    const newCourse = await userClient.createCourse(course);
+    setCourses([...courses, newCourse]);
   };
 
   return (
