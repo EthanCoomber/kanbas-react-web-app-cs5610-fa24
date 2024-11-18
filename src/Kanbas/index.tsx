@@ -10,6 +10,7 @@ import ProtectedRoute from './Account/ProtectedRoute';
 import * as client from './Courses/client';
 import Session from './Account/Session';
 import * as userClient from './Account/client';
+import * as courseClient from './Courses/client';
 
 export default function Kanbas() {
   const [courses, setCourses] = useState<any[]>([]);
@@ -50,8 +51,8 @@ export default function Kanbas() {
   // };
 
   const deleteCourse = async (courseId: string) => {
-    await client.deleteCourse(courseId);
-    setCourses(courses.filter((c) => c._id !== courseId));
+    const status = await courseClient.deleteCourse(courseId);
+    setCourses(courses.filter((course) => course._id !== courseId));
   };
 
   const updateCourse = async () => {
