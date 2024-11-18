@@ -9,7 +9,6 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer); // Pull enrollments from store
 
   console.log('currentUser', currentUser);
-  // console.log('enrollments', enrollments);
   const dispatch = useDispatch();
 
   const [showAllCourses, setShowAllCourses] = useState(false); // State to toggle between all courses and enrolled courses
