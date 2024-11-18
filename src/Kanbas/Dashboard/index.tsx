@@ -10,7 +10,7 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
   console.log('enrollments', enrollments);
   const dispatch = useDispatch();
 
-  const [showAllCourses, setShowAllCourses] = useState(false); // State to toggle between all courses and enrolled courses
+  const [showAllCourses, setShowAllCourses] = useState(false);
   const [enrollmentIdCounter, setEnrollmentIdCounter] = useState(10);
 
   // Check if a student is enrolled in the course
