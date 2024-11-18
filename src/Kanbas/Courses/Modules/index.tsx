@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import * as client from './client';
 import { useSelector, useDispatch } from 'react-redux';
 import * as coursesClient from '../client';
+import * as modulesClient from './client';
 
 export default function Modules() {
   const { cid } = useParams();
@@ -16,23 +17,18 @@ export default function Modules() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
 
-  const createModule = async (module: any) => {
-    const newModule = await client.createModule(cid as string, module);
-    dispatch(addModule(newModule));
-  };
-
   const fetchModules = async () => {
     const modules = await coursesClient.findModulesForCourse(cid as string);
     dispatch(setModules(modules));
   };
 
   const removeModule = async (moduleId: string) => {
-    await client.deleteModule(moduleId);
+    await modulesClient.deleteModule(moduleId);
     dispatch(deleteModule(moduleId));
   };
 
   const saveModule = async (module: any) => {
-    const status = await client.updateModule(module);
+    await modulesClient.updateModule(module);
     dispatch(updateModule(module));
   };
 
@@ -75,13 +71,7 @@ export default function Modules() {
                 />
               )}
 
-              <ModuleControlButtons
-                moduleId={module._id}
-                deleteModule={(moduleId) => {
-                  removeModule(moduleId);
-                }}
-                editModule={(moduleId) => dispatch(editModule(moduleId))}
-              />
+              <ModuleControlButtons moduleId={module._id} deleteModule={(moduleId) => removeModule(moduleId)} editModule={(moduleId) => dispatch(editModule(moduleId))} />
             </div>
             {module.lessons && (
               <ul className="wd-lessons list-group rounded-0">
