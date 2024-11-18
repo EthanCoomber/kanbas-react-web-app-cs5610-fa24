@@ -40,18 +40,16 @@ export default function Modules() {
     fetchModules();
   }, []);
 
+  const createModuleForCourse = async () => {
+    if (!cid) return;
+    const newModule = { name: moduleName, course: cid };
+    const module = await coursesClient.createModuleForCourse(cid, newModule);
+    dispatch(addModule(module));
+  };
+
   return (
     <div className="wd-modules">
-      {currentUser.role === 'FACULTY' && (
-        <ModulesControls
-          moduleName={moduleName}
-          setModuleName={setModuleName}
-          addModule={() => {
-            createModule({ name: moduleName, course: cid });
-            setModuleName('');
-          }}
-        />
-      )}
+      {currentUser.role === 'FACULTY' && <ModulesControls moduleName={moduleName} setModuleName={setModuleName} addModule={createModuleForCourse} />}
 
       <br />
       <br />
