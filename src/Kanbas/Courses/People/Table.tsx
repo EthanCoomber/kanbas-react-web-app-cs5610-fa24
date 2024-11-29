@@ -1,11 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
-import * as db from '../../Database';
+import { findUsersForCourse } from '../client'; // Ensure this path is correct
 import PeopleDetails from './Details';
 
 export default function PeopleTable({ users = [] }: { users?: any[] }) {
-  console.log('users', users);
+  const { cid } = useParams();
+  const [usersEnrolled, setUsersEnrolled] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUsersForCourse = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        if (cid) {
+          const enrolledUsers = await findUsersForCourse(cid);
+          console.log('enrolledUsers', enrolledUsers);
+          setUsersEnrolled(enrolledUsers);
+        }
+      } catch (err) {
+        setError('Failed to fetch users for the course.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (cid) {
+      fetchUsersForCourse();
+    }
+  }, [cid]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-danger">{error}</div>;
+  }
+
+  const displayUsers = cid ? usersEnrolled : users;
+
   return (
     <div id="wd-people-table">
       <PeopleDetails />
@@ -22,7 +59,7 @@ export default function PeopleTable({ users = [] }: { users?: any[] }) {
           </tr>
         </thead>
         <tbody>
-          {users.map((user: any) => (
+          {displayUsers.map((user: any) => (
             <tr key={user._id}>
               <td className="wd-full-name text-nowrap">
                 <Link to={`/Kanbas/Account/Users/${user._id}`} className="text-decoration-none">

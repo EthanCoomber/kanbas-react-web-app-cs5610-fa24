@@ -30,7 +30,6 @@ export default function AssignmentEditor() {
   const foundAssignment = assignments.find((assignment: { _id: string }) => assignment._id === assignmentId);
 
   const [currAssignment, setCurrAssignment] = useState({
-    _id: '',
     title: '',
     course: cid,
     name: '',
