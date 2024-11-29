@@ -16,24 +16,29 @@ export default function Kanbas() {
   const [courses, setCourses] = useState<any[]>([]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   console.log(currentUser);
+  // const fetchCourses = async () => {
+  //   let courses = [];
+  //   try {
+  //     console.log('here');
+  //     courses = await userClient.findMyCourses();
+  //     console.log('courses', courses);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  //   setCourses(courses);
+  // };
   const fetchCourses = async () => {
-    let courses = [];
     try {
-      console.log('here');
-      courses = await userClient.findMyCourses();
-      console.log('courses', courses);
+      const courses = await courseClient.fetchAllCourses();
+      setCourses(courses);
     } catch (error) {
       console.error(error);
     }
-    setCourses(courses);
   };
+
   useEffect(() => {
     fetchCourses();
   }, [currentUser]);
-
-  // useEffect(() => {
-  //   fetchCourses();
-  // }, []);
 
   const [course, setCourse] = useState<any>({
     _id: '0',
