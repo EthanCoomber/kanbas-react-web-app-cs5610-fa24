@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { enrollInCourse, unenrollFromCourse, setEnrollments } from './reducer'; // Import actions
 import * as client from './client';
 
-export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse, editCourse }: { courses: any[]; course: any; setCourse: (course: any) => void; addNewCourse: () => void; deleteCourse: (course: any) => void; updateCourse: () => void; editCourse: (course: any) => void }) {
+export default function Dashboard({ courses, course, setCourse, addNewCourse, deleteCourse, updateCourse, editCourse, enrolling, setEnrolling, updateEnrollment }: { courses: any[]; course: any; setCourse: (course: any) => void; addNewCourse: () => void; deleteCourse: (course: any) => void; updateCourse: () => void; editCourse: (course: any) => void; enrolling: boolean; setEnrolling: (enrolling: boolean) => void; updateEnrollment: (courseId: string, enrolled: boolean) => void }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer); // Pull enrollments from store
 
@@ -18,15 +18,6 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
 
   const findEnrolledCourse = (courseId: string) => enrollments.find((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === courseId);
 
-  const fetchEnrollments = async () => {
-    const enrollments = await client.fetchEnrollments();
-    console.log('enrollments', enrollments);
-    dispatch(setEnrollments(enrollments));
-  };
-
-  useEffect(() => {
-    fetchEnrollments();
-  }, []);
   // // Toggle enrollment for the course
   const handleToggleEnrollment = async (courseId: string) => {
     console.log('courseId', courseId);
@@ -45,6 +36,9 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>
+      <button onClick={() => setEnrolling(!enrolling)} className="float-end btn btn-primary">
+        {enrolling ? 'My Courses' : 'All Courses'}
+      </button>
       <hr />
 
       {(currentUser.role === 'FACULTY' || currentUser.role === 'ADMIN') && (
@@ -87,7 +81,20 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
                 <Link to={`/Kanbas/Courses/${course._id}/Home`} className="wd-dashboard-course-link text-decoration-none text-dark">
                   <img src="/images/reactjs.jpg" width="100%" height={160} />
                   <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">{course.name}</h5>
+                    <h5 className="wd-dashboard-course-title card-title">
+                      {enrolling && (
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            updateEnrollment(course._id, !course.enrolled);
+                          }}
+                          className={`btn ${course.enrolled ? 'btn-danger' : 'btn-success'} float-end`}
+                        >
+                          {course.enrolled ? 'Unenroll' : 'Enroll'}
+                        </button>
+                      )}
+                      {course.name}
+                    </h5>
                     <p className="wd-dashboard-course-title card-text overflow-y-hidden" style={{ maxHeight: 100 }}>
                       {course.description}
                     </p>
