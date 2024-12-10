@@ -36,9 +36,13 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>
+      {currentUser.role === 'STUDENT' && (
+
       <button onClick={() => setEnrolling(!enrolling)} className="float-end btn btn-primary">
         {enrolling ? 'My Courses' : 'All Courses'}
       </button>
+      )}
+
       <hr />
 
       {(currentUser.role === 'FACULTY' || currentUser.role === 'ADMIN') && (
@@ -59,16 +63,6 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
 
       <br />
       <hr />
-
-      {/* Enrollments Button for Students */}
-      {currentUser.role === 'STUDENT' && (
-        <button
-          className="btn btn-info float-end"
-          onClick={() => setShowAllCourses(!showAllCourses)} // Toggle between all courses and enrolled courses
-        >
-          {showAllCourses ? 'Show Enrolled Courses' : 'Show All Courses'}
-        </button>
-      )}
 
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
       <hr />
@@ -124,7 +118,7 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
                     ) : (
                       currentUser.role === 'STUDENT' && (
                         <>
-                          <button
+                          {/* <button
                             className={`btn ${isEnrolled(course._id) ? 'btn-danger' : 'btn-success'}`}
                             onClick={(e) => {
                               e.preventDefault();
@@ -132,7 +126,7 @@ export default function Dashboard({ courses, course, setCourse, addNewCourse, de
                             }}
                           >
                             {isEnrolled(course._id) ? 'Unenroll' : 'Enroll'}
-                          </button>
+                          </button> */}
                         </>
                       )
                     )}

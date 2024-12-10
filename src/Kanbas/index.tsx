@@ -37,9 +37,12 @@ export default function Kanbas() {
     }
   };
   const fetchCourses = async () => {
+    console.log('fetching courses');
     try {
       const allCourses = await courseClient.fetchAllCourses();
+      console.log('allCourses', allCourses);
       const enrolledCourses = await userClient.findCoursesForUser(currentUser._id);
+      console.log('enrolledCourses', enrolledCourses);
       const courses = allCourses.map((course: any) => {
         if (enrolledCourses.find((c: any) => c._id === course._id)) {
           return { ...course, enrolled: true };
@@ -47,6 +50,7 @@ export default function Kanbas() {
           return course;
         }
       });
+      console.log('courses 2', courses);
       setCourses(courses);
     } catch (error) {
       console.error(error);
@@ -54,6 +58,7 @@ export default function Kanbas() {
   };
 
   useEffect(() => {
+    console.log('useEffect');
     if (enrolling) {
       fetchCourses();
     } else {
@@ -126,6 +131,8 @@ export default function Kanbas() {
       })
     );
   };
+
+  console.log('enrolling', enrolling);
 
   const addNewCourse = async () => {
     const newCourse = await courseClient.createCourse(course);
